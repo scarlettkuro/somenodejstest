@@ -19,7 +19,7 @@ const server = http.createServer((req, res) => {
         !Number.isInteger(parseInt(getParams.profit)) ||
         !Number.isInteger(parseInt(getParams.rate))
     ) {
-        res.end('Please, specify integer GET parameters: base, add, profit, rate');
+        res.end('Please, specify integer GET parameters: base, add, profit, rate. For example : https://tableof24entries.herokuapp.com/?base=10000&add=5000&profit=50&rate=50');
     }
 
     var html = ejs.render(fs.readFileSync('var.ejs', 'utf8'), {
@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
     res.end(html);
 });
 
-server.listen(port, hostname, () => {
+server.listen(process.env.PORT || 8080,  function() {
     console.log(`Server running at http://${hostname}:${port}/`);
 });
 
