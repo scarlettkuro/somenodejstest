@@ -1,0 +1,41 @@
+<html>
+<head>
+ <meta charset="UTF-8"> 
+</head>
+<body>
+
+
+<div style="max-height: 320px; overflow: auto;">
+  <table class="table table-bordered table-striped" style="width: 100%">
+    <tr>
+      <th>Месяц</th>
+      <th>Размер депозита</th>
+      <th>Прибыль</th>
+      <th>Выведенная прибыль</th>
+    </tr>
+    <% var depositValue = base; %>
+    <% var profitCumulValue = 0; %>
+    <% var rateCumulValue = 0; %>
+
+    <% for (var i = 1; i <= 24; i++) { %>
+
+      <% if ( i > 1 ) { depositValue += add; } %>
+      <% var profitValue = depositValue * (profit / 100); %>
+      <% var rateValue = profitValue * (rate / 100); %>
+
+      <% depositValue += profitValue - rateValue; %>
+      <% profitCumulValue += profitValue; %>
+      <% rateCumulValue += rateValue; %>
+      <tr>
+        <td><%=i%></td>
+        <td><%=Math.round(depositValue)%></td>
+        <td><%=Math.round(profitCumulValue)%></td>
+        <td><%=Math.round(rateCumulValue)%></td>
+      </tr>
+
+    <% } %>
+  </table>
+</div>
+
+</body>
+</html>
